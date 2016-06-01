@@ -866,3 +866,42 @@ INSERT INTO id_generators
         SELECT  csid
         FROM    id_generators
         );
+
+-- BM custom patterns below
+
+-- BM_LOANS_OUT_NUMBER
+
+INSERT INTO id_generators
+    (csid, displayname, description, priority, last_generated_id, id_generator_state)
+  SELECT
+     'f1f47afb-2509-4d0b-98b8-2f9dd421d76e',
+     'BM Loan Out Number',
+     'Identifies activities in which collection objects are
+loaned out of the institution.',
+     '9',
+     '',
+'<org.collectionspace.services.id.SettableIDGenerator>
+  <parts>
+    <org.collectionspace.services.id.StringIDGeneratorPart>
+      <initialValue>L</initialValue>
+      <currentValue>L</currentValue>
+    </org.collectionspace.services.id.StringIDGeneratorPart>
+    <org.collectionspace.services.id.YearIDGeneratorPart>
+      <currentValue></currentValue>
+    </org.collectionspace.services.id.YearIDGeneratorPart>
+    <org.collectionspace.services.id.StringIDGeneratorPart>
+      <initialValue>.</initialValue>
+      <currentValue>.</currentValue>
+    </org.collectionspace.services.id.StringIDGeneratorPart>
+    <org.collectionspace.services.id.NumericIDGeneratorPart>
+      <maxLength>6</maxLength>
+      <initialValue>1</initialValue>
+      <currentValue>-1</currentValue>
+    </org.collectionspace.services.id.NumericIDGeneratorPart>
+  </parts>
+</org.collectionspace.services.id.SettableIDGenerator>'
+  WHERE 'f1f47afb-2509-4d0b-98b8-2f9dd421d76e' NOT IN
+        (
+        SELECT  csid
+        FROM    id_generators
+        );
