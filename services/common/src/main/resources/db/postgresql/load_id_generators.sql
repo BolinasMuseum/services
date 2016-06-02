@@ -979,3 +979,41 @@ conforming to a formal identification system.',
         SELECT  csid
         FROM    id_generators
         );
+
+-- BM_OBJECT_EXIT_NUMBER
+
+INSERT INTO id_generators
+    (csid, displayname, description, priority, last_generated_id, id_generator_state)
+  SELECT
+     'a8d7603e-7bcf-4be4-9003-2214a52716f4',
+     'BM Object Exit Number',
+     'Identifies an exit from the museum of collection objects, via
+transfer or destruction, and the deaccessioning of those objects
+from the museum''s collections.',
+     '9',
+     '',
+'<org.collectionspace.services.id.SettableIDGenerator>
+  <parts>
+    <org.collectionspace.services.id.StringIDGeneratorPart>
+      <initialValue>X</initialValue>
+      <currentValue>X</currentValue>
+    </org.collectionspace.services.id.StringIDGeneratorPart>
+    <org.collectionspace.services.id.YearIDGeneratorPart>
+      <currentValue></currentValue>
+    </org.collectionspace.services.id.YearIDGeneratorPart>
+    <org.collectionspace.services.id.StringIDGeneratorPart>
+      <initialValue>.</initialValue>
+      <currentValue>.</currentValue>
+    </org.collectionspace.services.id.StringIDGeneratorPart>
+    <org.collectionspace.services.id.NumericIDGeneratorPart>
+      <maxLength>6</maxLength>
+      <initialValue>1</initialValue>
+      <currentValue>-1</currentValue>
+    </org.collectionspace.services.id.NumericIDGeneratorPart>
+  </parts>
+</org.collectionspace.services.id.SettableIDGenerator>'
+  WHERE 'a8d7603e-7bcf-4be4-9003-2214a52716f4' NOT IN
+        (
+        SELECT  csid
+        FROM    id_generators
+        );
