@@ -941,3 +941,41 @@ INSERT INTO id_generators
         SELECT  csid
         FROM    id_generators
         );
+
+-- BM_MEDIA_RESOURCE_IDENTIFICATION_NUMBER
+
+INSERT INTO id_generators
+    (csid, displayname, description, priority, last_generated_id, id_generator_state)
+  SELECT
+     '53742d00-4c95-4ebd-a335-bf9765a3fda5',
+     'BM Media Resource Identification Number',
+     'Unambiguously identifies a media resource within a given context.
+Recommended best practice is to identify the resource by means of a string
+conforming to a formal identification system.',
+     '9',
+     '',
+'<org.collectionspace.services.id.SettableIDGenerator>
+  <parts>
+    <org.collectionspace.services.id.StringIDGeneratorPart>
+      <initialValue>MR</initialValue>
+      <currentValue>MR</currentValue>
+    </org.collectionspace.services.id.StringIDGeneratorPart>
+    <org.collectionspace.services.id.YearIDGeneratorPart>
+      <currentValue></currentValue>
+    </org.collectionspace.services.id.YearIDGeneratorPart>
+    <org.collectionspace.services.id.StringIDGeneratorPart>
+      <initialValue>.</initialValue>
+      <currentValue>.</currentValue>
+    </org.collectionspace.services.id.StringIDGeneratorPart>
+    <org.collectionspace.services.id.NumericIDGeneratorPart>
+      <maxLength>6</maxLength>
+      <initialValue>1</initialValue>
+      <currentValue>-1</currentValue>
+    </org.collectionspace.services.id.NumericIDGeneratorPart>
+  </parts>
+</org.collectionspace.services.id.SettableIDGenerator>'
+  WHERE '53742d00-4c95-4ebd-a335-bf9765a3fda5' NOT IN
+        (
+        SELECT  csid
+        FROM    id_generators
+        );
