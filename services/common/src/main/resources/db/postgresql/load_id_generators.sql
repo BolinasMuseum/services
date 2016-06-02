@@ -1017,3 +1017,37 @@ from the museum''s collections.',
         SELECT  csid
         FROM    id_generators
         );
+
+-- BM_ACCESSION_NUMBER
+
+INSERT INTO id_generators
+    (csid, displayname, description, priority, last_generated_id, id_generator_state)
+  SELECT 
+     '74b23399-488d-41db-8e3e-88749a2afefc',
+     'BM Accession Number',
+     'Identifies individual collection objects formally
+acquired by the institution. Used for collection objects
+without parts.',
+     '9',
+     '',
+'<org.collectionspace.services.id.SettableIDGenerator>
+  <parts>
+    <org.collectionspace.services.id.YearIDGeneratorPart>
+      <currentValue></currentValue>
+    </org.collectionspace.services.id.YearIDGeneratorPart>
+    <org.collectionspace.services.id.StringIDGeneratorPart>
+      <initialValue>.</initialValue>
+      <currentValue>.</currentValue>
+    </org.collectionspace.services.id.StringIDGeneratorPart>
+    <org.collectionspace.services.id.NumericIDGeneratorPart>
+      <maxLength>6</maxLength>
+      <initialValue>1</initialValue>
+      <currentValue>-1</currentValue>
+    </org.collectionspace.services.id.NumericIDGeneratorPart>
+  </parts>
+</org.collectionspace.services.id.SettableIDGenerator>'
+  WHERE '74b23399-488d-41db-8e3e-88749a2afefc' NOT IN
+        (
+        SELECT  csid
+        FROM    id_generators
+        );
